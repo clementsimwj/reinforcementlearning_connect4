@@ -1,4 +1,4 @@
-from utils import check_win, create_board, display_board, place_piece
+from utils import check_board_full, check_win, create_board, display_board, place_piece
 from config import config
 import numpy as np
 
@@ -11,6 +11,9 @@ def play_game(board: np.ndarray, turn: int) -> None:
     has_winner = False
     while not has_winner:
         display_board(board)
+        if check_board_full(board):
+            print("The board is full! It's a draw.")
+            return
         curr_player = players[turn % 2]
 
         col = get_player_move(board, curr_player)
@@ -19,11 +22,11 @@ def play_game(board: np.ndarray, turn: int) -> None:
             return
 
         place_piece(board, col, curr_player)
-        won, winner = check_win(board, curr_player)
+        won = check_win(board, curr_player)
         if won:
             display_board(board)
             has_winner = True
-            print(f"{config[winner]['name']} wins!")
+            print(f"{config[curr_player]['name']} wins!")
             return
         turn += 1
 
