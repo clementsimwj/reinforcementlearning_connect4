@@ -1,5 +1,5 @@
-from utils import check_board_full, check_win, create_board, display_board, place_piece
-from config import config
+from reinforcementlearning_connect4.game.utils import check_board_full, check_win, create_board, display_board, place_piece
+from reinforcementlearning_connect4.game.config import config
 import numpy as np
 
 def main():

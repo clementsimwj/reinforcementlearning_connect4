@@ -1,5 +1,5 @@
 import numpy as np
-from config import config
+from reinforcementlearning_connect4.game.config import config
 
 # Board
 
@@ -22,7 +22,7 @@ def place_piece(board:np.ndarray, col: int, player: str) -> None:
         if board[row][col] == 0:
             board[row][col] = symbol
             
-            return
+            return board
 
 # Game Conditions
 
@@ -38,28 +38,24 @@ def check_win(board: np.ndarray, player: str) -> bool:
         for col in range(cols - 3):
             if all(board[row][col+i] == symbol for i in range(4)):
                 return True
-    print("Horizontal check complete.")
 
     # Check Vertical:
     for col in range(cols):
         for row in range(rows - 3):
             if all(board[row+i][col] == symbol for i in range(4)):
                 return True
-    print("Vertical check complete.")
 
     # Check Diagonal (bottom-left and top-right):
     for row in range(rows - 3):
         for col in range(cols - 3):
             if all (board[row+i][col+i] == symbol for i in range(4)):
                 return True
-    print("Diagonal check complete.")
 
     # Check Diagonal (top-left and bottom-right):
     for row in range(3, rows):
         for col in range(cols - 3):
             if all (board[row-i][col+i] == symbol for i in range(4)):
                 return True
-    print("Diagonal check complete.")
 
     return False
 
