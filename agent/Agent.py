@@ -4,7 +4,7 @@ import numpy as np
 import torch
 import torch.nn.functional as f
 import copy
-from Dqn import DQN
+from reinforcementlearning_connect4.agent.Dqn import DQN
 
 class Agent:
     def __init__(self, symbol: int, rows: int = 6, cols: int = 7,
